@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, MapPin, Clock, Briefcase, ExternalLink, DollarSign } from "lucide-react";
+import { ArrowLeft, MapPin, Clock, Briefcase, DollarSign } from "lucide-react";
 
 import { Header } from "@/components/Header";
 import { Badge } from "@/components/ui/badge";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { CompanyAvatar } from "@/components/CompanyAvatar";
+import { JobDetailClient } from "@/components/JobDetailClient";
 import { JOBS } from "@/lib/data";
 
 export function generateStaticParams() {
@@ -64,10 +65,8 @@ export default async function JobDetailPage({
                       {job.title}
                     </h1>
                   </div>
-                  <Button size="sm" className="shrink-0">
-                    <ExternalLink className="size-4" />
-                    Apply
-                  </Button>
+                  {/* Top Apply button — rendered by the client component */}
+                  <JobDetailClient jobTitle={job.title} company={job.company} slot="top" />
                 </div>
 
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
@@ -110,12 +109,8 @@ export default async function JobDetailPage({
                 </p>
               </div>
 
-              <div className="pt-2">
-                <Button className="w-full sm:w-auto">
-                  <ExternalLink className="size-4" />
-                  Apply for this position
-                </Button>
-              </div>
+              {/* Bottom Apply button + modal — shared instance */}
+              <JobDetailClient jobTitle={job.title} company={job.company} slot="bottom" />
             </div>
           </Card>
         </div>

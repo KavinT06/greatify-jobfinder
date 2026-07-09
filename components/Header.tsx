@@ -37,7 +37,7 @@ export function Header() {
 
         <div className="flex items-center gap-2">
           <Link
-            href="/saved"
+            href={isSavedActive ? "/" : "/saved"}
             className={cn(
               buttonVariants({ variant: "ghost", size: "sm" }),
               isSavedActive && "bg-muted text-foreground"
