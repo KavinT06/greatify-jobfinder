@@ -22,7 +22,7 @@ export function Header() {
             alt="Greatify"
             width={32}
             height={32}
-            className="size-12 scale-125" 
+            className="size-12 scale-125 rounded-xl mr-2" 
             priority
           />
           <div className="flex flex-col gap-0.5">
